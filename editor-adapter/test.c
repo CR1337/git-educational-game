@@ -9,13 +9,15 @@
 #include "debug.h"
 #include "server_port.h"
 
+#define COLOR COLOR_RED
+
 enum {
     USER_SELECTION_OPEN_EDITOR = 0,
     USER_SELECTION_FAIL = 1
 };
 
 static const size_t MAX_FILENME_LENGTH = 1024;
-static const char OPEN_EDITOR_COMMAND[] = "nano ";
+static const char OPEN_EDITOR_COMMAND[] = "nano";
 static const int DEFAULT_USER_SELECTION = USER_SELECTION_OPEN_EDITOR;
 static const uint8_t SUCCESS_RESPONSE = 0;
 static const uint8_t FAILURE_RESPONSE = 1;
@@ -36,7 +38,7 @@ int trigger_open_editor()
 
     if (getcwd(cwd, sizeof(cwd)) == NULL)
     {
-        debug_print("Could not get cwd.\n");
+        debug_print(COLOR, "Could not get cwd.\n");
         return 1;
     }
     
@@ -50,7 +52,7 @@ int trigger_open_editor()
     pid_t pid = fork();
     if (pid < 0)
     {
-        debug_print("Error forking.\n");
+        debug_print(COLOR, "Error forking.\n");
         return 1;
     }
     else if (pid == 0)
@@ -60,7 +62,7 @@ int trigger_open_editor()
         execlp("git", "git", "commit", "--allow-empty", NULL);
 
         // if execlp returns an error occurred
-        debug_print("Error running git commit.\n");
+        debug_print(COLOR, "Error running git commit.\n");
         return 1;
     }
 
@@ -74,7 +76,7 @@ int open_editor(const char *filename)
     snprintf(
         command_buffer,
         buffer_size,
-        "%s%s",
+        "%s %s",
         OPEN_EDITOR_COMMAND,
         filename
     );
@@ -92,19 +94,19 @@ void cleanup(int server_sockfd)
     {
         socket_close(server_sockfd);
         socket_open = false;
-        debug_print("Server socket closed.\n");
+        debug_print(COLOR, "Server socket closed.\n");
     }
 
     if (repo_initialized)
     {
         errno = 0;
         if (remove_repo() || errno) {
-            debug_print("Error removing git repository.\n");
-            print_error();
+            debug_print(COLOR, "Error removing git repository.\n");
+            print_error(COLOR);
             exit(EXIT_FAILURE);
         }
         repo_initialized = false;
-        debug_print("Successfully removed git repository.\n");
+        debug_print(COLOR, "Successfully removed git repository.\n");
     }
 }
 
@@ -115,53 +117,53 @@ int initialize()
     errno = 0;
     if (initialize_repo() || errno)
     {
-        debug_print("Error initializing git repository.\n");
+        debug_print(COLOR, "Error initializing git repository.\n");
         goto ERROR;
     }
     repo_initialized = true;
-    debug_print("Initialized git repository.\n");
+    debug_print(COLOR, "Initialized git repository.\n");
 
     errno = 0;
     if ((server_sockfd = socket_create()) < 0 || errno) 
     {
-        debug_print("Error creating socket.\n");
+        debug_print(COLOR, "Error creating socket.\n");
         goto ERROR;
     }
-    debug_print("Created socket soccessfully.\n");
+    debug_print(COLOR, "Created socket soccessfully.\n");
 
     errno = 0;
     if ((socket_bind(server_sockfd, SERVER_PORT)) < 0 || errno)
     {
-        debug_print("Error binding socket.\n");
+        debug_print(COLOR, "Error binding socket.\n");
         goto ERROR;
     }
-    debug_print("Socket bound successfully.\n");
+    debug_print(COLOR, "Socket bound successfully.\n");
 
     errno = 0;
     if ((socket_listen(server_sockfd)) < 0) 
     {
-        debug_print("Error listening on socket.\n");
+        debug_print(COLOR, "Error listening on socket.\n");
         goto ERROR;
     }
-    debug_print("Listened on socket successfully.\n");
+    debug_print(COLOR, "Listened on socket successfully.\n");
 
     return server_sockfd;
 ERROR:
-    print_error();
+    print_error(COLOR);
     cleanup(server_sockfd);
     exit(EXIT_FAILURE);
 }
 
 int user_iteraction()
 {
-    printf("%d - Open Editor (default)\n", USER_SELECTION_OPEN_EDITOR);
-    printf("%d - Fail\n", USER_SELECTION_FAIL);
-    printf("\nSelect a option:");
+    debug_print(COLOR, "%d - Open Editor (default)\n", USER_SELECTION_OPEN_EDITOR);
+    debug_print(COLOR, "%d - Fail\n", USER_SELECTION_FAIL);
+    debug_print(COLOR, "\nSelect a option:");
     int selection = DEFAULT_USER_SELECTION;
     int result = scanf("%d", &selection);
     if (result <= 0)
     {
-        debug_print("Invalid user input. Using default: opening editor.\n");
+        debug_print(COLOR, "Invalid user input. Using default: opening editor.\n");
         selection = DEFAULT_USER_SELECTION;
     }
     return selection;
@@ -174,27 +176,27 @@ void communicate(int server_sockfd)
     errno = 0;
     if (trigger_open_editor() || errno)
     {
-        debug_print("Error triggering opening editor.\n");
+        debug_print(COLOR, "Error triggering opening editor.\n");
         goto ERROR;
     }
-    debug_print("Triggered opening editor successfully.\n");
+    debug_print(COLOR, "Triggered opening editor successfully.\n");
 
     int client_sockfd = 0;
     errno = 0;
     if ((client_sockfd = socket_accept(server_sockfd)) < 0 || errno) 
     {
-        debug_print("Error accepting connection.\n");
+        debug_print(COLOR, "Error accepting connection.\n");
         goto ERROR;
     }
-    debug_print("Successfully accepted connection.\n");
+    debug_print(COLOR, "Successfully accepted connection.\n");
 
     errno = 0;
     if ((socket_receive(client_sockfd, filename, MAX_FILENME_LENGTH)) < 0 || errno) 
     {
-        debug_print("Error receiving filename.\n");
+        debug_print(COLOR, "Error receiving filename.\n");
         goto ERROR;
     }
-    debug_print("Successfully received filename: %s.\n", filename);
+    debug_print(COLOR, "Successfully received filename: %s.\n", filename);
 
     const int user_selection = user_iteraction();
     char response = 0;
@@ -204,31 +206,31 @@ void communicate(int server_sockfd)
             errno = 0;
             if (open_editor(filename) || errno) 
             {
-                debug_print("Error opening editor.\n");
+                debug_print(COLOR, "Error opening editor.\n");
                 goto ERROR;
             }
-            debug_print("Opened editor successfully.\n");
+            debug_print(COLOR, "Opened editor successfully.\n");
             response = SUCCESS_RESPONSE;
             break;
 
         case USER_SELECTION_FAIL:
         default:
             response = FAILURE_RESPONSE;
-            debug_print("Simulating editor failure.\n");
+            debug_print(COLOR, "Simulating editor failure.\n");
             break;
     }
 
     errno = 0;
     if ((socket_send(client_sockfd, &response, sizeof(uint8_t))) < 0 || errno)
     {
-        debug_print("Error sending response: %d.\n", response);
+        debug_print(COLOR, "Error sending response: %d.\n", response);
         goto ERROR;
     }
-    debug_print("Successfully sent response: %d.\n", response);
+    debug_print(COLOR, "Successfully sent response: %d.\n", response);
 
     return;
 ERROR:
-    print_error();
+    print_error(COLOR);
     cleanup(server_sockfd);
     exit(EXIT_FAILURE);
 }
