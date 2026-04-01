@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://q7jmneprufxb"]
+
+[ext_resource type="Script" uid="uid://b7gninhptitsj" path="res://git_interface.gd" id="1_wfaya"]
+
+[node name="GitInterface" type="Control" unique_id=1693055023]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wfaya")
+
+[node name="Panels" type="HBoxContainer" parent="." unique_id=669838567]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel" type="VBoxContainer" parent="Panels" unique_id=457551691]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="FileList" type="ItemList" parent="Panels/LeftPanel" unique_id=1255353517]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GitGraph" type="GraphEdit" parent="Panels/LeftPanel" unique_id=187142651]
+layout_mode = 2
+size_flags_vertical = 3
+show_grid = false
+minimap_enabled = false
+show_menu = false
+show_zoom_buttons = false
+show_grid_buttons = false
+show_minimap_button = false
+show_arrange_button = false
+
+[node name="CenterPanel" type="VBoxContainer" parent="Panels" unique_id=380061549]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabBar" type="TabContainer" parent="Panels/CenterPanel" unique_id=2015737082]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+
+[node name="PuzzleConteiner" type="PanelContainer" parent="Panels/CenterPanel/TabBar" unique_id=88126041]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="DebugContainer" type="VBoxContainer" parent="Panels/CenterPanel/TabBar" unique_id=273164650]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="AddressTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1309369982]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.21
+text = "http://localhost:8080/api"
+
+[node name="RequestButton" type="Button" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1900903426]
+layout_mode = 2
+text = "Request"
+
+[node name="FileTabContainer" type="TabContainer" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=977692435]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=254035137]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MetadataTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1891166443]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panels/CenterPanel" unique_id=1107178944]
+layout_mode = 2
+
+[node name="CommandLine" type="TextEdit" parent="Panels/CenterPanel/HBoxContainer" unique_id=101460780]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubmitButton" type="Button" parent="Panels/CenterPanel/HBoxContainer" unique_id=106089402]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+text = "Submit"
+
+[node name="RightPanel" type="VBoxContainer" parent="Panels" unique_id=572426230]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="CommandList" type="ItemList" parent="Panels/RightPanel" unique_id=764690873]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="button_up" from="Panels/CenterPanel/TabBar/DebugContainer/RequestButton" to="." method="_on_request_button_button_up"]
