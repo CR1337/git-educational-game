@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1b40h50ja5lb"]
+
+[node name="LevelSelection" type="PanelContainer" unique_id=1933948352]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=312897122]
+layout_mode = 2

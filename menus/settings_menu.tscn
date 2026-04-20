@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://cmaj3yysi5f6i"]
+
+[ext_resource type="Script" uid="uid://dbonjpnk8itif" path="res://menus/settings_menu.gd" id="1_83qjl"]
+
+[node name="SettingsMenu" type="VBoxContainer" unique_id=848263191]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_83qjl")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=593978073]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tab_0/title = "LOC_SERVER_CONNECTION"
+tab_1/title = "LOC_LANGUAGE"
+
+[node name="ServerConnection" type="GridContainer" parent="TabContainer" unique_id=2116818464]
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "LOC_SERVER_CONNECTION"
+
+[node name="ProtocolLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=656251877]
+layout_mode = 2
+text = "LOC_PROTOCOL"
+
+[node name="ProtocolOptionButton" type="OptionButton" parent="TabContainer/ServerConnection" unique_id=128580458]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "HTTP"
+popup/item_0/id = 0
+popup/item_1/text = "HTTPS"
+popup/item_1/id = 1
+
+[node name="AddressLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=1844274450]
+layout_mode = 2
+text = "LOC_ADDRESS"
+
+[node name="AddressLineEdit" type="LineEdit" parent="TabContainer/ServerConnection" unique_id=1425096969]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "localhost"
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="PortLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=1141863219]
+layout_mode = 2
+text = "LOC_PORT"
+
+[node name="PortSpinBox" type="SpinBox" parent="TabContainer/ServerConnection" unique_id=471511672]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 65535.0
+value = 8080.0
+rounded = true
+
+[node name="Language" type="GridContainer" parent="TabContainer" unique_id=1573849759]
+visible = false
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "LOC_LANGUAGE"
+
+[node name="LanguageLabel" type="Label" parent="TabContainer/Language" unique_id=216652676]
+layout_mode = 2
+text = "LOC_LANGUAGE"
+
+[node name="LanguageOptionButton" type="OptionButton" parent="TabContainer/Language" unique_id=1268699294]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "Deutsch"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=814217290]
+layout_mode = 2
+
+[node name="OkButton" type="Button" parent="ButtonContainer" unique_id=1639239554]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_OK"
+
+[node name="CancelButton" type="Button" parent="ButtonContainer" unique_id=707282455]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_CANCEL"
+
+[connection signal="button_up" from="ButtonContainer/OkButton" to="." method="_on_ok_button_button_up"]
+[connection signal="button_up" from="ButtonContainer/CancelButton" to="." method="_on_cancel_button_button_up"]

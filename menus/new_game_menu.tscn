@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cto0br5n1mov5"]
+
+[ext_resource type="Script" uid="uid://3xkg82my1b6o" path="res://menus/new_game_menu.gd" id="1_743bu"]
+[ext_resource type="PackedScene" uid="uid://c1mmu8vdtd04h" path="res://menus/loading_screen.tscn" id="2_7ngqh"]
+[ext_resource type="Script" uid="uid://d2pabmkxm6lny" path="res://api/requests/new_game.gd" id="2_uoiwe"]
+[ext_resource type="Script" uid="uid://e6olump8homq" path="res://api/requests/get_levelsets.gd" id="4_272qu"]
+
+[node name="NewGameMenu" type="PanelContainer" unique_id=112654889]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_743bu")
+
+[node name="LoadingScreen" parent="." unique_id=999706203 instance=ExtResource("2_7ngqh")]
+visible = false
+z_index = 1
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1390895300]
+layout_mode = 2
+
+[node name="PlayerNameContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1401612031]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayerNameContainer" unique_id=1223277001]
+layout_mode = 2
+text = "LOC_PLAYER_NAME"
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="VBoxContainer/PlayerNameContainer" unique_id=1800438631]
+layout_mode = 2
+size_flags_horizontal = 3
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="LevelsetContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2123511251]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/LevelsetContainer" unique_id=1146821766]
+layout_mode = 2
+text = "LOC_LEVELSET"
+
+[node name="LevelsetOptionButton" type="OptionButton" parent="VBoxContainer/LevelsetContainer" unique_id=549543256]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer" unique_id=326677169]
+layout_mode = 2
+text = "LOC_START_GAME"
+
+[node name="ApiRequestNewGame" type="Node" parent="." unique_id=2019983459]
+script = ExtResource("2_uoiwe")
+metadata/_custom_type_script = "uid://d2pabmkxm6lny"
+
+[node name="ApiRequestGetLevelsets" type="Node" parent="." unique_id=1279067523]
+script = ExtResource("4_272qu")
+metadata/_custom_type_script = "uid://e6olump8homq"
+
+[connection signal="back_button_pressed" from="LoadingScreen" to="." method="_on_loading_screen_back_button_pressed"]
+[connection signal="button_up" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_button_up"]
+[connection signal="request_completed" from="ApiRequestNewGame" to="." method="_on_api_request_new_game_request_completed"]
+[connection signal="request_failed" from="ApiRequestNewGame" to="." method="_on_api_request_new_game_request_failed"]
+[connection signal="request_completed" from="ApiRequestGetLevelsets" to="." method="_on_api_request_get_levelsets_request_completed"]
+[connection signal="request_failed" from="ApiRequestGetLevelsets" to="." method="_on_api_request_get_levelsets_request_failed"]

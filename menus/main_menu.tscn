@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b7orld0cp7yuh"]
+
+[ext_resource type="Script" uid="uid://qyr3i5y21e0x" path="res://menus/main_menu.gd" id="1_8gy84"]
+
+[node name="MainMenu" type="PanelContainer" unique_id=1004138688]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gy84")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1179931021]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="ButtonContainer" unique_id=868540151]
+layout_mode = 2
+size_flags_vertical = 3
+text = "LOC_PLAY"
+
+[node name="SettingsButton" type="Button" parent="ButtonContainer" unique_id=649612017]
+layout_mode = 2
+size_flags_vertical = 3
+text = "LOC_SETTINGS"
+
+[node name="LevelEditorButton" type="Button" parent="ButtonContainer" unique_id=95431838]
+layout_mode = 2
+size_flags_vertical = 3
+text = "LOC_LEVEL_EDITOR"
+
+[node name="InfoButton" type="Button" parent="ButtonContainer" unique_id=2019687865]
+layout_mode = 2
+size_flags_vertical = 3
+text = "LOC_INFO"
+
+[connection signal="button_up" from="ButtonContainer/PlayButton" to="." method="_on_play_button_button_up"]
+[connection signal="button_up" from="ButtonContainer/SettingsButton" to="." method="_on_settings_button_button_up"]
+[connection signal="button_up" from="ButtonContainer/LevelEditorButton" to="." method="_on_level_editor_button_button_up"]
+[connection signal="button_up" from="ButtonContainer/InfoButton" to="." method="_on_info_button_button_up"]

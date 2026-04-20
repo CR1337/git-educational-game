@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="git-educational-game"
-run/main_scene="uid://q7jmneprufxb"
+run/main_scene="uid://4rg0vwcib175"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SettingsData="*uid://c5du4y1dw2hbg"
+GameData="*uid://jy8s0bfmgooj"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/localization.de.translation", "res://localization/localization.en.translation")
 
 [physics]
 

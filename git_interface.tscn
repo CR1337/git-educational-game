@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://q7jmneprufxb"]
 
 [ext_resource type="Script" uid="uid://b7gninhptitsj" path="res://git_interface.gd" id="1_wfaya"]
+[ext_resource type="Script" uid="uid://knlnsg7673el" path="res://api/requests/editor_response.gd" id="2_2xg5h"]
+[ext_resource type="Script" uid="uid://dn0rdoqsuqshb" path="res://api/requests/get_file.gd" id="3_e2dei"]
+[ext_resource type="Script" uid="uid://367mx1pfdt01" path="res://api/requests/get_files.gd" id="4_4tnk1"]
+[ext_resource type="Script" uid="uid://dak5m7078wfev" path="res://api/requests/get_git_graph.gd" id="5_pkgyt"]
+[ext_resource type="Script" uid="uid://cil8y30dx1n6r" path="res://api/requests/get_level.gd" id="6_7eddg"]
+[ext_resource type="Script" uid="uid://ddlvlttfjefxl" path="res://api/requests/git_command.gd" id="7_3fpj0"]
+[ext_resource type="Script" uid="uid://dkhhd87qsw22p" path="res://api/requests/reset_level.gd" id="8_0j70a"]
+[ext_resource type="Script" uid="uid://bvjcw82a3ogrt" path="res://api/requests/set_level_solved.gd" id="9_25fi6"]
+[ext_resource type="Script" uid="uid://kx18v1t4l25k" path="res://api/requests/update_file.gd" id="10_4gh6k"]
 
 [node name="GitInterface" type="Control" unique_id=1693055023]
 layout_mode = 3
@@ -102,5 +111,43 @@ size_flags_stretch_ratio = 0.5
 [node name="CommandList" type="ItemList" parent="Panels/RightPanel" unique_id=764690873]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Requests" type="Node" parent="." unique_id=1629935206]
+
+[node name="ApiRequestEditorResponse" type="Node" parent="Requests" unique_id=520356658]
+script = ExtResource("2_2xg5h")
+metadata/_custom_type_script = "uid://knlnsg7673el"
+
+[node name="ApiRequestGetFile" type="Node" parent="Requests" unique_id=663315019]
+script = ExtResource("3_e2dei")
+metadata/_custom_type_script = "uid://dn0rdoqsuqshb"
+
+[node name="ApiRequestGetFiles" type="Node" parent="Requests" unique_id=1030722462]
+script = ExtResource("4_4tnk1")
+metadata/_custom_type_script = "uid://367mx1pfdt01"
+
+[node name="ApiRequestGetGitGraph" type="Node" parent="Requests" unique_id=645642447]
+script = ExtResource("5_pkgyt")
+metadata/_custom_type_script = "uid://dak5m7078wfev"
+
+[node name="ApiRequestGetLevel" type="Node" parent="Requests" unique_id=126899684]
+script = ExtResource("6_7eddg")
+metadata/_custom_type_script = "uid://cil8y30dx1n6r"
+
+[node name="ApiRequestGitCommand" type="Node" parent="Requests" unique_id=1140758822]
+script = ExtResource("7_3fpj0")
+metadata/_custom_type_script = "uid://ddlvlttfjefxl"
+
+[node name="ApiRequestResetLevel" type="Node" parent="Requests" unique_id=1525470544]
+script = ExtResource("8_0j70a")
+metadata/_custom_type_script = "uid://dkhhd87qsw22p"
+
+[node name="ApiRequestSetLevelSolved" type="Node" parent="Requests" unique_id=1766323348]
+script = ExtResource("9_25fi6")
+metadata/_custom_type_script = "uid://bvjcw82a3ogrt"
+
+[node name="ApiRequestUpdateFile" type="Node" parent="Requests" unique_id=697025614]
+script = ExtResource("10_4gh6k")
+metadata/_custom_type_script = "uid://kx18v1t4l25k"
 
 [connection signal="button_up" from="Panels/CenterPanel/TabBar/DebugContainer/RequestButton" to="." method="_on_request_button_button_up"]

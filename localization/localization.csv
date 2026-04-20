@@ -1,0 +1,19 @@
+key,en,de
+LOC_PLAY,Play,Spielen
+LOC_SETTINGS,Settings,Einstellungen
+LOC_INFO,Info,Info
+LOC_CLICK_TO_CONTINUE,Click to continue...,Klicke um fortzufahren...
+LOC_BACK,Back,Zurück
+LOC_OK,OK,OK
+LOC_CANCEL,Cancel,Abbrechen
+LOC_PROTOCOL,Protocol,Protokoll
+LOC_ADDRESS,Address,Addresse
+LOC_PORT,Port,Port
+LOC_LANGUAGE,Language,Sprache
+LOC_SERVER_CONNECTION,Server connection,Serververbindung
+LOC_START_GAME,Start game, Spiel starten
+LOC_LOADING,Loading ...,Laden ...
+LOC_COMMUNICATION_ERROR,Error talking to the server!,Fehler bei der Kommunikation mit dem Server!
+LOC_LEVEL_EDITOR,Level Editor, Leveleditor
+LOC_PLAYER_NAME,Player Name, Spielername
+LOC_LEVELSET,Level Set, Levelset
