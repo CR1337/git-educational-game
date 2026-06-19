@@ -23,20 +23,6 @@ columns = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "LOC_SERVER_CONNECTION"
 
-[node name="ProtocolLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=656251877]
-layout_mode = 2
-text = "LOC_PROTOCOL"
-
-[node name="ProtocolOptionButton" type="OptionButton" parent="TabContainer/ServerConnection" unique_id=128580458]
-layout_mode = 2
-size_flags_horizontal = 3
-selected = 0
-item_count = 2
-popup/item_0/text = "HTTP"
-popup/item_0/id = 0
-popup/item_1/text = "HTTPS"
-popup/item_1/id = 1
-
 [node name="AddressLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=1844274450]
 layout_mode = 2
 text = "LOC_ADDRESS"
@@ -44,20 +30,9 @@ text = "LOC_ADDRESS"
 [node name="AddressLineEdit" type="LineEdit" parent="TabContainer/ServerConnection" unique_id=1425096969]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "localhost"
+text = "http://localhost:8080"
 context_menu_enabled = false
 emoji_menu_enabled = false
-
-[node name="PortLabel" type="Label" parent="TabContainer/ServerConnection" unique_id=1141863219]
-layout_mode = 2
-text = "LOC_PORT"
-
-[node name="PortSpinBox" type="SpinBox" parent="TabContainer/ServerConnection" unique_id=471511672]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 65535.0
-value = 8080.0
-rounded = true
 
 [node name="Language" type="GridContainer" parent="TabContainer" unique_id=1573849759]
 visible = false

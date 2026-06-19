@@ -6,7 +6,8 @@ const METHOD: HTTPClient.Method = HTTPClient.METHOD_PUT
 
 signal request_completed(status_code: int)
 
-func request(game_id: String, level_id: String, filename: String, file: ApiFile) -> Error:
+func request(game_id: String, level_id: String, file: ApiFile) -> Error:
+    var filename: String = file.filename.split("/")[-1]
     return self._request(self.get_url(self.PATH.format({"game_id": game_id, "level_id": level_id, "filename": filename})), file.serialize())
 
 func _request_completed(result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray) -> void:

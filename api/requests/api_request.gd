@@ -26,11 +26,10 @@ func _request(url: String, body: String = "") -> Error:
     )
 
 func get_url(path: String) -> String:
-    if SettingsData.api_address == "":
+    if path.begins_with("http"):
         return path
     else:
-        var _protocol: String = "http" if SettingsData.api_protocol == SettingsData.ApiProtocol.HTTP else "https"
-        return _protocol + "://" + SettingsData.api_address + ":" + str(SettingsData.api_port) + "/api" + path
+        return SettingsData.api_address + "/api" + path
 
 func _handle_failed_request(result: int, status_code: int) -> bool:
     if result != 0 or status_code >= 300:

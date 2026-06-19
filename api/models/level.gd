@@ -3,9 +3,9 @@ extends ApiBaseModel
 
 const type_: String = "Level"
 var id: String
-var files: Array[ApiFile]
+var files: Array
 var map: ApiMap
-var clues: Array[String]
+var clues: Array
 var intro: String
 var outro: String
 var level_node: ApiLevelNode

@@ -1,11 +1,25 @@
 [gd_scene format=3 uid="uid://b1b40h50ja5lb"]
 
+[ext_resource type="Script" uid="uid://btbo0ws1ncfb" path="res://scenes/level_selection.gd" id="1_gswpo"]
+[ext_resource type="Script" uid="uid://xostlvpigvu8" path="res://api/requests/get_level_graph.gd" id="2_gswpo"]
+
 [node name="LevelSelection" type="PanelContainer" unique_id=1933948352]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gswpo")
 
 [node name="GraphEdit" type="GraphEdit" parent="." unique_id=312897122]
 layout_mode = 2
+
+[node name="ApiRequestGetLevelGraph" type="Node" parent="." unique_id=1957447309]
+script = ExtResource("2_gswpo")
+metadata/_custom_type_script = "uid://xostlvpigvu8"
+
+[connection signal="gui_input" from="GraphEdit" to="." method="_on_graph_edit_gui_input"]
+[connection signal="node_deselected" from="GraphEdit" to="." method="_on_graph_edit_node_deselected"]
+[connection signal="node_selected" from="GraphEdit" to="." method="_on_graph_edit_node_selected"]
+[connection signal="request_completed" from="ApiRequestGetLevelGraph" to="." method="_on_api_request_get_level_graph_request_completed"]
+[connection signal="request_failed" from="ApiRequestGetLevelGraph" to="." method="_on_api_request_get_level_graph_request_failed"]

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://rmiiogo43b1e"]
+
+[ext_resource type="Script" uid="uid://ji2nwbnnj7sx" path="res://scenes/puzzle.gd" id="1_s1sq6"]
+
+[node name="Puzzle" type="PanelContainer" unique_id=395885012]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1sq6")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=949470957]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PuzzleContainer" type="VBoxContainer" parent="MarginContainer" unique_id=938788613]
+layout_mode = 2
+
+[node name="UpperContainer" type="HBoxContainer" parent="MarginContainer/PuzzleContainer" unique_id=841212426]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FileTextEdit" type="TextEdit" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=1685723900]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MapTextEdit" type="TextEdit" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=1775522097]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LowerContainer" type="HBoxContainer" parent="MarginContainer/PuzzleContainer" unique_id=417169167]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="MarginContainer/PuzzleContainer/LowerContainer" unique_id=271224628]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_SAVE"
+
+[node name="ResetLevelButton" type="Button" parent="MarginContainer/PuzzleContainer/LowerContainer" unique_id=181347645]
+layout_mode = 2
+text = "LOC_RESET_LEVEL"
+
+[node name="RunButton" type="Button" parent="MarginContainer/PuzzleContainer/LowerContainer" unique_id=1319473182]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_RUN"
+
+[node name="EditorContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1751625024]
+visible = false
+layout_mode = 2
+
+[node name="EditorTextEdit" type="TextEdit" parent="MarginContainer/EditorContainer" unique_id=31729152]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EditorButtonContainer" type="HBoxContainer" parent="MarginContainer/EditorContainer" unique_id=141640746]
+layout_mode = 2
+
+[node name="EditorSaveButton" type="Button" parent="MarginContainer/EditorContainer/EditorButtonContainer" unique_id=417402615]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_SAVE"
+
+[node name="EditorCancelButton" type="Button" parent="MarginContainer/EditorContainer/EditorButtonContainer" unique_id=1175120898]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LOC_CANCEL"
+
+[connection signal="button_up" from="MarginContainer/PuzzleContainer/LowerContainer/SaveButton" to="." method="_on_save_button_button_up"]
+[connection signal="button_up" from="MarginContainer/PuzzleContainer/LowerContainer/ResetLevelButton" to="." method="_on_reset_level_button_button_up"]
+[connection signal="button_up" from="MarginContainer/PuzzleContainer/LowerContainer/RunButton" to="." method="_on_run_button_button_up"]
+[connection signal="button_up" from="MarginContainer/EditorContainer/EditorButtonContainer/EditorSaveButton" to="." method="_on_editor_save_button_button_up"]
+[connection signal="button_up" from="MarginContainer/EditorContainer/EditorButtonContainer/EditorCancelButton" to="." method="_on_editor_cancel_button_button_up"]

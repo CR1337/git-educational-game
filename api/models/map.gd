@@ -6,7 +6,7 @@ var id: String
 var width: int
 var height: int
 var content: String
-var patches: Array[Array]
+var patches: Array
 
 func as_dict() -> Dictionary:
     return {

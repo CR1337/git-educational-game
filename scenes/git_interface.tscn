@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://q7jmneprufxb"]
 
-[ext_resource type="Script" uid="uid://b7gninhptitsj" path="res://git_interface.gd" id="1_wfaya"]
+[ext_resource type="Script" uid="uid://b7gninhptitsj" path="res://scenes/git_interface.gd" id="1_wfaya"]
 [ext_resource type="Script" uid="uid://knlnsg7673el" path="res://api/requests/editor_response.gd" id="2_2xg5h"]
+[ext_resource type="PackedScene" uid="uid://rmiiogo43b1e" path="res://scenes/Puzzle.tscn" id="2_8in06"]
+[ext_resource type="Script" uid="uid://cnd81rx6phsx1" path="res://scenes/file_list.gd" id="2_8pedo"]
+[ext_resource type="PackedScene" uid="uid://x5ichf6blme0" path="res://scenes/game_debug_screen.tscn" id="2_68oru"]
 [ext_resource type="Script" uid="uid://dn0rdoqsuqshb" path="res://api/requests/get_file.gd" id="3_e2dei"]
 [ext_resource type="Script" uid="uid://367mx1pfdt01" path="res://api/requests/get_files.gd" id="4_4tnk1"]
 [ext_resource type="Script" uid="uid://dak5m7078wfev" path="res://api/requests/get_git_graph.gd" id="5_pkgyt"]
+[ext_resource type="Script" uid="uid://d0l0n2fvgo413" path="res://scenes/command_line.gd" id="5_w046c"]
 [ext_resource type="Script" uid="uid://cil8y30dx1n6r" path="res://api/requests/get_level.gd" id="6_7eddg"]
+[ext_resource type="Script" uid="uid://dp1kcltipprgo" path="res://scenes/command_list.gd" id="6_w046c"]
 [ext_resource type="Script" uid="uid://ddlvlttfjefxl" path="res://api/requests/git_command.gd" id="7_3fpj0"]
 [ext_resource type="Script" uid="uid://dkhhd87qsw22p" path="res://api/requests/reset_level.gd" id="8_0j70a"]
 [ext_resource type="Script" uid="uid://bvjcw82a3ogrt" path="res://api/requests/set_level_solved.gd" id="9_25fi6"]
@@ -37,6 +42,7 @@ size_flags_stretch_ratio = 0.5
 [node name="FileList" type="ItemList" parent="Panels/LeftPanel" unique_id=1255353517]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("2_8pedo")
 
 [node name="GitGraph" type="GraphEdit" parent="Panels/LeftPanel" unique_id=187142651]
 layout_mode = 2
@@ -56,46 +62,30 @@ size_flags_horizontal = 3
 [node name="TabBar" type="TabContainer" parent="Panels/CenterPanel" unique_id=2015737082]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
-[node name="PuzzleConteiner" type="PanelContainer" parent="Panels/CenterPanel/TabBar" unique_id=88126041]
-visible = false
+[node name="Puzzle" parent="Panels/CenterPanel/TabBar" unique_id=479454250 instance=ExtResource("2_8in06")]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="DebugContainer" type="VBoxContainer" parent="Panels/CenterPanel/TabBar" unique_id=273164650]
+[node name="GameDebugScreen" parent="Panels/CenterPanel/TabBar" unique_id=742682849 instance=ExtResource("2_68oru")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
-
-[node name="AddressTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1309369982]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.21
-text = "http://localhost:8080/api"
-
-[node name="RequestButton" type="Button" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1900903426]
-layout_mode = 2
-text = "Request"
-
-[node name="FileTabContainer" type="TabContainer" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=977692435]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MapTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=254035137]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MetadataTextEdit" type="TextEdit" parent="Panels/CenterPanel/TabBar/DebugContainer" unique_id=1891166443]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panels/CenterPanel" unique_id=1107178944]
 layout_mode = 2
 
-[node name="CommandLine" type="TextEdit" parent="Panels/CenterPanel/HBoxContainer" unique_id=101460780]
+[node name="Label" type="Label" parent="Panels/CenterPanel/HBoxContainer" unique_id=676108083]
+layout_mode = 2
+text = "git"
+
+[node name="CommandLine" type="LineEdit" parent="Panels/CenterPanel/HBoxContainer" unique_id=810288817]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+drag_and_drop_selection_enabled = false
+script = ExtResource("5_w046c")
 
 [node name="SubmitButton" type="Button" parent="Panels/CenterPanel/HBoxContainer" unique_id=106089402]
 layout_mode = 2
@@ -111,6 +101,14 @@ size_flags_stretch_ratio = 0.5
 [node name="CommandList" type="ItemList" parent="Panels/RightPanel" unique_id=764690873]
 layout_mode = 2
 size_flags_vertical = 3
+item_count = 6
+item_0/text = "add"
+item_1/text = "commit"
+item_2/text = "checkout"
+item_3/text = "merge"
+item_4/text = "branch"
+item_5/text = "cherrypick"
+script = ExtResource("6_w046c")
 
 [node name="Requests" type="Node" parent="." unique_id=1629935206]
 
@@ -150,4 +148,19 @@ metadata/_custom_type_script = "uid://bvjcw82a3ogrt"
 script = ExtResource("10_4gh6k")
 metadata/_custom_type_script = "uid://kx18v1t4l25k"
 
-[connection signal="button_up" from="Panels/CenterPanel/TabBar/DebugContainer/RequestButton" to="." method="_on_request_button_button_up"]
+[connection signal="item_selected" from="Panels/LeftPanel/FileList" to="." method="_on_file_list_item_selected"]
+[connection signal="item_selected" from="Panels/LeftPanel/FileList" to="Panels/LeftPanel/FileList" method="_on_item_selected"]
+[connection signal="editor_response_available" from="Panels/CenterPanel/TabBar/Puzzle" to="." method="_on_puzzle_editor_response_available"]
+[connection signal="file_changed" from="Panels/CenterPanel/TabBar/Puzzle" to="." method="_on_puzzle_file_changed"]
+[connection signal="puzzle_reset" from="Panels/CenterPanel/TabBar/Puzzle" to="." method="_on_puzzle_puzzle_reset"]
+[connection signal="puzzle_solved" from="Panels/CenterPanel/TabBar/Puzzle" to="." method="_on_puzzle_puzzle_solved"]
+[connection signal="button_up" from="Panels/CenterPanel/HBoxContainer/SubmitButton" to="." method="_on_submit_button_button_up"]
+[connection signal="request_completed" from="Requests/ApiRequestEditorResponse" to="." method="_on_api_request_editor_response_request_completed"]
+[connection signal="request_completed" from="Requests/ApiRequestGetFile" to="." method="_on_api_request_get_file_request_completed"]
+[connection signal="request_completed" from="Requests/ApiRequestGetFiles" to="." method="_on_api_request_get_files_request_completed"]
+[connection signal="request_completed" from="Requests/ApiRequestGetLevel" to="." method="_on_api_request_get_level_request_completed"]
+[connection signal="request_completed_with_editor_request" from="Requests/ApiRequestGitCommand" to="." method="_on_api_request_git_command_request_completed_with_editor_request"]
+[connection signal="request_completed_with_git_result" from="Requests/ApiRequestGitCommand" to="." method="_on_api_request_git_command_request_completed_with_git_result"]
+[connection signal="request_completed" from="Requests/ApiRequestResetLevel" to="." method="_on_api_request_reset_level_request_completed"]
+[connection signal="request_completed" from="Requests/ApiRequestSetLevelSolved" to="." method="_on_api_request_set_level_solved_request_completed"]
+[connection signal="request_completed" from="Requests/ApiRequestUpdateFile" to="." method="_on_api_request_update_file_request_completed"]

@@ -2,7 +2,7 @@ class_name ApiGitCommand
 extends ApiBaseModel
 
 const type_: String = "GitCommand"
-var argv: Array[String]
+var argv: Array
 
 func as_dict() -> Dictionary:
     return {

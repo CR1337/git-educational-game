@@ -22,7 +22,7 @@ static func from_dict(json_object: Dictionary) -> ApiEditorRequest:
     result.id = json_object["id"]
     result.file = ApiFile.from_dict(json_object["file"])
     result.stdout = json_object["stdout"]
-    result.stdin = json_object["stdin"]
+    result.stderr = json_object["stderr"]
 
     return result
 

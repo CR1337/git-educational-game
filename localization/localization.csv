@@ -17,3 +17,7 @@ LOC_COMMUNICATION_ERROR,Error talking to the server!,Fehler bei der Kommunikatio
 LOC_LEVEL_EDITOR,Level Editor, Leveleditor
 LOC_PLAYER_NAME,Player Name, Spielername
 LOC_LEVELSET,Level Set, Levelset
+LOC_SAVE,Save,Speichern
+LOC_RUN,Run,Start
+LOC_RESET_LEVEL,Reset Level,Level zurücksetzen
+LOC_MISSING_LABEL_ERROR,There is no Label,Es gibt kein Label

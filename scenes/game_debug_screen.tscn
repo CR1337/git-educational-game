@@ -1,0 +1,355 @@
+[gd_scene format=3 uid="uid://x5ichf6blme0"]
+
+[ext_resource type="Script" uid="uid://ij4irh0cjr0c" path="res://scenes/game_debug_screen.gd" id="1_wy6wl"]
+[ext_resource type="Script" uid="uid://cil8y30dx1n6r" path="res://api/requests/get_level.gd" id="2_7r0rn"]
+[ext_resource type="Script" uid="uid://dkhhd87qsw22p" path="res://api/requests/reset_level.gd" id="3_tduir"]
+[ext_resource type="Script" uid="uid://ejv034ca224f" path="res://api/requests/set_level_started.gd" id="4_xy2vt"]
+[ext_resource type="Script" uid="uid://bvjcw82a3ogrt" path="res://api/requests/set_level_solved.gd" id="5_crpec"]
+[ext_resource type="Script" uid="uid://367mx1pfdt01" path="res://api/requests/get_files.gd" id="6_rllb2"]
+[ext_resource type="Script" uid="uid://dn0rdoqsuqshb" path="res://api/requests/get_file.gd" id="7_a3oej"]
+[ext_resource type="Script" uid="uid://kx18v1t4l25k" path="res://api/requests/update_file.gd" id="8_rja8q"]
+[ext_resource type="Script" uid="uid://ddlvlttfjefxl" path="res://api/requests/git_command.gd" id="9_hu7mb"]
+[ext_resource type="Script" uid="uid://knlnsg7673el" path="res://api/requests/editor_response.gd" id="10_1jako"]
+
+[node name="GameDebugScreen" type="Control" unique_id=742682849]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wy6wl")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1814190333]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+current_tab = 3
+tab_0/title = "General Info"
+tab_1/title = "Level Data"
+tab_2/title = "Files"
+tab_3/title = "Git"
+
+[node name="GeneralInfoGridContainer" type="GridContainer" parent="TabContainer" unique_id=752414803]
+visible = false
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "General Info"
+
+[node name="GameIdLabel" type="Label" parent="TabContainer/GeneralInfoGridContainer" unique_id=12449634]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game ID:"
+
+[node name="GameIdLineEdit" type="LineEdit" parent="TabContainer/GeneralInfoGridContainer" unique_id=861972073]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="PlayerNameLabel" type="Label" parent="TabContainer/GeneralInfoGridContainer" unique_id=2072596766]
+layout_mode = 2
+text = "Player Name:"
+
+[node name="PlayerNameLineEdit" type="LineEdit" parent="TabContainer/GeneralInfoGridContainer" unique_id=1385358582]
+layout_mode = 2
+editable = false
+
+[node name="LevelsetIdLabel" type="Label" parent="TabContainer/GeneralInfoGridContainer" unique_id=1357707266]
+layout_mode = 2
+text = "Levelset ID:"
+
+[node name="LevelsetIdLineEdit" type="LineEdit" parent="TabContainer/GeneralInfoGridContainer" unique_id=148898472]
+layout_mode = 2
+editable = false
+
+[node name="LevelDataGridContainer" type="GridContainer" parent="TabContainer" unique_id=210703965]
+visible = false
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Level Data"
+
+[node name="LevelIdLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1652261750]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level ID:"
+
+[node name="LevelIdLineEdit" type="LineEdit" parent="TabContainer/LevelDataGridContainer" unique_id=289821586]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="LevelNameLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=2113906453]
+layout_mode = 2
+text = "Level Name:"
+
+[node name="LevelNameLineEdit" type="LineEdit" parent="TabContainer/LevelDataGridContainer" unique_id=1719603954]
+layout_mode = 2
+editable = false
+
+[node name="LevelStartedLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=3710143]
+layout_mode = 2
+text = "Level Started:"
+
+[node name="LevelStartedLineEdit" type="LineEdit" parent="TabContainer/LevelDataGridContainer" unique_id=1554246553]
+layout_mode = 2
+editable = false
+
+[node name="LevelSolvedLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1775984681]
+layout_mode = 2
+text = "Level Solved:"
+
+[node name="LevelSolvedLineEdit" type="LineEdit" parent="TabContainer/LevelDataGridContainer" unique_id=791830740]
+layout_mode = 2
+editable = false
+
+[node name="IntroLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1248592254]
+layout_mode = 2
+text = "Intro:"
+
+[node name="IntroTextEdit" type="TextEdit" parent="TabContainer/LevelDataGridContainer" unique_id=344702247]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="OutroLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=392633327]
+layout_mode = 2
+text = "Outro:"
+
+[node name="OutroTextEdit" type="TextEdit" parent="TabContainer/LevelDataGridContainer" unique_id=30919951]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="CluesLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=710525242]
+layout_mode = 2
+text = "Clues:"
+
+[node name="CluesItemList" type="ItemList" parent="TabContainer/LevelDataGridContainer" unique_id=1883337931]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=869871054]
+layout_mode = 2
+text = "Map:"
+
+[node name="MapTextEdit" type="TextEdit" parent="TabContainer/LevelDataGridContainer" unique_id=1684394851]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="PatchesLabel" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1219168782]
+layout_mode = 2
+text = "Patches:"
+
+[node name="PatchesItemList" type="ItemList" parent="TabContainer/LevelDataGridContainer" unique_id=1926601398]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DummyLabel1" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=2013813721]
+layout_mode = 2
+
+[node name="ReloadButton" type="Button" parent="TabContainer/LevelDataGridContainer" unique_id=65688988]
+layout_mode = 2
+text = "Reload"
+
+[node name="DummyLabel2" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=539647739]
+layout_mode = 2
+
+[node name="ResetLevelButton" type="Button" parent="TabContainer/LevelDataGridContainer" unique_id=1329325432]
+layout_mode = 2
+text = "Reset Level"
+
+[node name="DummyLabel3" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1115212667]
+layout_mode = 2
+
+[node name="SetStartedButton" type="Button" parent="TabContainer/LevelDataGridContainer" unique_id=544172406]
+layout_mode = 2
+text = "Set Started"
+
+[node name="DummyLabel4" type="Label" parent="TabContainer/LevelDataGridContainer" unique_id=1718107258]
+layout_mode = 2
+
+[node name="SetSolvedButton" type="Button" parent="TabContainer/LevelDataGridContainer" unique_id=1212227088]
+layout_mode = 2
+text = "Set Solved"
+
+[node name="FilesGridContainer" type="GridContainer" parent="TabContainer" unique_id=2132244006]
+visible = false
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Files"
+
+[node name="FilesItemList" type="ItemList" parent="TabContainer/FilesGridContainer" unique_id=1262457285]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FileTextEdit" type="TextEdit" parent="TabContainer/FilesGridContainer" unique_id=1150020792]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ReloadButton" type="Button" parent="TabContainer/FilesGridContainer" unique_id=1552417695]
+layout_mode = 2
+text = "Reload"
+
+[node name="SaveChangesButton" type="Button" parent="TabContainer/FilesGridContainer" unique_id=1996644465]
+layout_mode = 2
+text = "Save Changes"
+
+[node name="GitGridContainer" type="GridContainer" parent="TabContainer" unique_id=1701373672]
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 3
+metadata/_tab_name = "Git"
+
+[node name="GitArgvLineEdit" type="LineEdit" parent="TabContainer/GitGridContainer" unique_id=119857930]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "git argv"
+
+[node name="SubmitButton" type="Button" parent="TabContainer/GitGridContainer" unique_id=1176616571]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Submit"
+
+[node name="ResultTypeLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=751540427]
+layout_mode = 2
+text = "Result Type:"
+
+[node name="ResultTypeLineEdit" type="LineEdit" parent="TabContainer/GitGridContainer" unique_id=1590791796]
+layout_mode = 2
+editable = false
+
+[node name="ReturncodeLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=920218566]
+layout_mode = 2
+text = "Returncode:"
+
+[node name="ReturncodeLineEdit" type="LineEdit" parent="TabContainer/GitGridContainer" unique_id=1118514664]
+layout_mode = 2
+editable = false
+
+[node name="StdoutLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=134036913]
+layout_mode = 2
+text = "Stdout:"
+
+[node name="StdoutTextEdit" type="TextEdit" parent="TabContainer/GitGridContainer" unique_id=1529274520]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="StderrLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=1578648430]
+layout_mode = 2
+text = "Stderr:"
+
+[node name="StderrTextEdit" type="TextEdit" parent="TabContainer/GitGridContainer" unique_id=1214554802]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="GitSessionIdLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=1163982148]
+layout_mode = 2
+text = "Git Session ID:"
+
+[node name="GitSessionIdLineEdit" type="LineEdit" parent="TabContainer/GitGridContainer" unique_id=1748661790]
+layout_mode = 2
+editable = false
+
+[node name="FileContentLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=899909647]
+layout_mode = 2
+text = "File Content:"
+
+[node name="FileContentTextEdit" type="TextEdit" parent="TabContainer/GitGridContainer" unique_id=903207868]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AbortLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=1689830980]
+layout_mode = 2
+text = "Abort:"
+
+[node name="AbortCheckBox" type="CheckBox" parent="TabContainer/GitGridContainer" unique_id=743946167]
+layout_mode = 2
+
+[node name="DummyLabel" type="Label" parent="TabContainer/GitGridContainer" unique_id=261076149]
+layout_mode = 2
+
+[node name="SubmitFileContentButton" type="Button" parent="TabContainer/GitGridContainer" unique_id=2048255528]
+layout_mode = 2
+disabled = true
+text = "Submit File Content"
+
+[node name="Requests" type="Node" parent="." unique_id=1985736113]
+
+[node name="ApiRequestGetLevel" type="Node" parent="Requests" unique_id=1557568999]
+script = ExtResource("2_7r0rn")
+metadata/_custom_type_script = "uid://cil8y30dx1n6r"
+
+[node name="ApiRequestResetLevel" type="Node" parent="Requests" unique_id=191868515]
+script = ExtResource("3_tduir")
+metadata/_custom_type_script = "uid://dkhhd87qsw22p"
+
+[node name="ApiRequestSetLevelStarted" type="Node" parent="Requests" unique_id=2046480454]
+script = ExtResource("4_xy2vt")
+metadata/_custom_type_script = "uid://ejv034ca224f"
+
+[node name="ApiRequestSetLevelSolved" type="Node" parent="Requests" unique_id=1562753564]
+script = ExtResource("5_crpec")
+metadata/_custom_type_script = "uid://bvjcw82a3ogrt"
+
+[node name="ApiRequestGetFiles" type="Node" parent="Requests" unique_id=1896205868]
+script = ExtResource("6_rllb2")
+metadata/_custom_type_script = "uid://367mx1pfdt01"
+
+[node name="ApiRequestGetFile" type="Node" parent="Requests" unique_id=335521575]
+script = ExtResource("7_a3oej")
+metadata/_custom_type_script = "uid://dn0rdoqsuqshb"
+
+[node name="ApiRequestUpdateFile" type="Node" parent="Requests" unique_id=1585498942]
+script = ExtResource("8_rja8q")
+metadata/_custom_type_script = "uid://kx18v1t4l25k"
+
+[node name="ApiRequestGitCommand" type="Node" parent="Requests" unique_id=886185999]
+script = ExtResource("9_hu7mb")
+metadata/_custom_type_script = "uid://ddlvlttfjefxl"
+
+[node name="ApiRequestEditorResponse" type="Node" parent="Requests" unique_id=769741036]
+script = ExtResource("10_1jako")
+metadata/_custom_type_script = "uid://knlnsg7673el"
+
+[connection signal="button_up" from="TabContainer/LevelDataGridContainer/ReloadButton" to="." method="_on_reload_level_data_button_button_up"]
+[connection signal="button_up" from="TabContainer/LevelDataGridContainer/ResetLevelButton" to="." method="_on_reset_level_button_button_up"]
+[connection signal="button_up" from="TabContainer/LevelDataGridContainer/SetStartedButton" to="." method="_on_set_started_button_button_up"]
+[connection signal="button_up" from="TabContainer/LevelDataGridContainer/SetSolvedButton" to="." method="_on_set_solved_button_button_up"]
+[connection signal="item_selected" from="TabContainer/FilesGridContainer/FilesItemList" to="." method="_on_files_item_list_item_selected"]
+[connection signal="button_up" from="TabContainer/FilesGridContainer/ReloadButton" to="." method="_on_reload_files_button_button_up"]
+[connection signal="button_up" from="TabContainer/FilesGridContainer/SaveChangesButton" to="." method="_on_save_changes_button_button_up"]
+[connection signal="button_up" from="TabContainer/GitGridContainer/SubmitButton" to="." method="_on_submit_button_button_up"]
+[connection signal="button_up" from="TabContainer/GitGridContainer/SubmitFileContentButton" to="." method="_on_submit_file_content_button_button_up"]
+[connection signal="request_completed" from="Requests/ApiRequestGetLevel" to="." method="_on_api_request_get_level_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestGetLevel" to="." method="_on_api_request_get_level_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestResetLevel" to="." method="_on_api_request_reset_level_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestResetLevel" to="." method="_on_api_request_reset_level_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestSetLevelStarted" to="." method="_on_api_request_set_level_started_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestSetLevelStarted" to="." method="_on_api_request_set_level_started_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestSetLevelSolved" to="." method="_on_api_request_set_level_solved_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestSetLevelSolved" to="." method="_on_api_request_set_level_solved_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestGetFiles" to="." method="_on_api_request_get_files_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestGetFiles" to="." method="_on_api_request_get_files_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestGetFile" to="." method="_on_api_request_get_file_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestGetFile" to="." method="_on_api_request_get_file_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestUpdateFile" to="." method="_on_api_request_update_file_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestUpdateFile" to="." method="_on_api_request_update_file_request_failed"]
+[connection signal="request_completed_with_editor_request" from="Requests/ApiRequestGitCommand" to="." method="_on_api_request_git_command_request_completed_with_editor_request"]
+[connection signal="request_completed_with_git_result" from="Requests/ApiRequestGitCommand" to="." method="_on_api_request_git_command_request_completed_with_git_result"]
+[connection signal="request_failed" from="Requests/ApiRequestGitCommand" to="." method="_on_api_request_git_command_request_failed"]
+[connection signal="request_completed" from="Requests/ApiRequestEditorResponse" to="." method="_on_api_request_editor_response_request_completed"]
+[connection signal="request_failed" from="Requests/ApiRequestEditorResponse" to="." method="_on_api_request_editor_response_request_failed"]

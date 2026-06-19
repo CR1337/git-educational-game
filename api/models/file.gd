@@ -15,7 +15,6 @@ func as_dict() -> Dictionary:
 static func from_dict(json_object: Dictionary) -> ApiFile:
     var result: ApiFile = ApiFile.new()
 
-    result.id = json_object["id"]
     result.filename = json_object["filename"]
     result.content = json_object["content"]
 
