@@ -18,6 +18,3 @@ func update_file(file: ApiFile) -> void
 
 @abstract
 func handle_editor_request(editor_request: ApiEditorRequest, use_merge_editor: bool) -> void
-
-
-

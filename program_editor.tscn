@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b1v7s6lxr7oce"]
+
+[ext_resource type="PackedScene" uid="uid://bvrhv23ipbhlj" path="res://code_block_list.tscn" id="2_fun27"]
+
+[node name="ProgramEditor" type="ScrollContainer" unique_id=43125558]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1843947162]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1923006418]
+layout_mode = 2
+text = "Programm:"
+
+[node name="CodeBlockList" parent="VBoxContainer" unique_id=476440419 instance=ExtResource("2_fun27")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=706020990]
+layout_mode = 2
+text = "Ungenutzte Befehle:"
+
+[node name="CodeBlockList2" parent="VBoxContainer" unique_id=1805091988 instance=ExtResource("2_fun27")]
+layout_mode = 2

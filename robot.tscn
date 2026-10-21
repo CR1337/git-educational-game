@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bdemysvctjjn5"]
+
+[ext_resource type="Script" uid="uid://cgrvfhgwnmwvd" path="res://robot.gd" id="1_dfm56"]
+[ext_resource type="Texture2D" uid="uid://c8m0r6r34ca7j" path="res://assets/puzzle-tileset.png" id="2_yhfw1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vve4b"]
+resource_local_to_scene = true
+atlas = ExtResource("2_yhfw1")
+region = Rect2(0, 16, 16, 16)
+
+[node name="Robot" type="Sprite2D" unique_id=531675883]
+texture_filter = 1
+texture = SubResource("AtlasTexture_vve4b")
+script = ExtResource("1_dfm56")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bvrhv23ipbhlj"]
+
+[ext_resource type="Script" uid="uid://euvj7msw5asn" path="res://code_block_list.gd" id="1_mosno"]
+
+[node name="CodeBlockList" type="VBoxContainer" unique_id=1691130165]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mosno")
+program = "put H
+turn B
+label 1
+move 2
+turn B
+move 1
+turn L
+scan F mark
+toggle
+branch 1
+remove F"

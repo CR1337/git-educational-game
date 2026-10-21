@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://63ipgv5wwxl3"]
+
+[ext_resource type="Texture2D" uid="uid://c8m0r6r34ca7j" path="res://assets/puzzle-tileset.png" id="1_g2tbl"]
+[ext_resource type="Script" uid="uid://dvrfkwcrx4f16" path="res://box.gd" id="1_oq5cr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8arjp"]
+resource_local_to_scene = true
+atlas = ExtResource("1_g2tbl")
+region = Rect2(48, 0, 16, 16)
+
+[node name="Box" type="Sprite2D" unique_id=1617483204]
+texture_filter = 1
+texture = SubResource("AtlasTexture_8arjp")
+script = ExtResource("1_oq5cr")

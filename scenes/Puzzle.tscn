@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://rmiiogo43b1e"]
 
 [ext_resource type="Script" uid="uid://ji2nwbnnj7sx" path="res://scenes/puzzle.gd" id="1_s1sq6"]
+[ext_resource type="PackedScene" uid="uid://b1v7s6lxr7oce" path="res://program_editor.tscn" id="2_rypjj"]
+[ext_resource type="PackedScene" uid="uid://dsw5shij7w864" path="res://puzzleGrid.tscn" id="3_c26br"]
 
 [node name="Puzzle" type="PanelContainer" unique_id=395885012]
 anchors_preset = 15
@@ -24,11 +26,20 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="ProgramEditor" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=43125558 instance=ExtResource("2_rypjj")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PuzzleGrid" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=603862145 instance=ExtResource("3_c26br")]
+layout_mode = 2
+
 [node name="FileTextEdit" type="TextEdit" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=1685723900]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MapTextEdit" type="TextEdit" parent="MarginContainer/PuzzleContainer/UpperContainer" unique_id=1775522097]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 

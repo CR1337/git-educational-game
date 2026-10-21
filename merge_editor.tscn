@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bmfkpnv23eot"]
+
+[node name="MergeEditor" type="VBoxContainer" unique_id=1375372699]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MergeContainer" type="HBoxContainer" parent="." unique_id=611058189]
+layout_mode = 2
+
+[node name="OldCodeContainer" type="VBoxContainer" parent="MergeContainer" unique_id=473438671]
+layout_mode = 2
+
+[node name="NewCodeContainer" type="VBoxContainer" parent="MergeContainer" unique_id=248675852]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=2114718375]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ButtonContainer" unique_id=1080475703]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="ButtonContainer" unique_id=1447442773]
+layout_mode = 2

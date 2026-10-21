@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b7t8l6u5xtpa7"]
+
+[ext_resource type="Script" uid="uid://bi8h1ext73726" path="res://text_editor.gd" id="1_pj4mx"]
+
+[node name="TextEditor" type="VBoxContainer" unique_id=468727]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pj4mx")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=969075232]
+layout_mode = 2
+size_flags_vertical = 3
+emoji_menu_enabled = false
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=1794478515]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="ButtonContainer" unique_id=260820692]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Abbrechen"
+
+[node name="SaveButton" type="Button" parent="ButtonContainer" unique_id=1021847920]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speichern"
+
+[connection signal="pressed" from="ButtonContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/SaveButton" to="." method="_on_save_button_pressed"]
